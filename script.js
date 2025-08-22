@@ -88,3 +88,62 @@ const slider = document.querySelector('.slider-container');
     }, 3000);
   });
 
+// --- LÓGICA PARA EL PRICE RANGE SLIDER Y FILTRADO DE OFERTAS ---
+
+// Esperamos a que todo el contenido del DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Seleccionamos los elementos del DOM que vamos a usar
+    const minSlider = document.getElementById('min-price-slider');
+    const maxSlider = document.getElementById('max-price-slider');
+    const minPriceDisplay = document.getElementById('min-price-display');
+    const maxPriceDisplay = document.getElementById('max-price-display');
+    
+    // Seleccionamos todas las ofertas (los slides)
+    // Es importante que el contenedor de las ofertas tenga la clase '.slider-container'
+    const slides = document.querySelectorAll('.slider-container .slide');
+
+    // Función que se encarga de filtrar las ofertas
+    function filterOffers() {
+        // Obtenemos los valores numéricos de los sliders
+        let minPrice = parseInt(minSlider.value);
+        let maxPrice = parseInt(maxSlider.value);
+
+        // Lógica para que el slider de mínimo no supere al de máximo
+        if (minPrice > maxPrice - 50) { // -50 para dar un pequeño margen
+            minSlider.value = maxPrice - 50;
+            minPrice = parseInt(minSlider.value);
+        }
+
+        // Lógica para que el slider de máximo no sea menor que el de mínimo
+        if (maxPrice < minPrice + 50) {
+            maxSlider.value = minPrice + 50;
+            maxPrice = parseInt(maxSlider.value);
+        }
+
+        // Actualizamos los números que ve el usuario
+        minPriceDisplay.textContent = minPrice;
+        maxPriceDisplay.textContent = maxPrice;
+
+        // Recorremos cada una de las ofertas para decidir si la mostramos o la ocultamos
+        slides.forEach(slide => {
+            // Obtenemos el precio de la oferta desde el atributo 'data-price'
+            const offerPrice = parseInt(slide.dataset.price);
+
+            // Comprobamos si el precio de la oferta está dentro del rango seleccionado
+            if (offerPrice >= minPrice && offerPrice <= maxPrice) {
+                slide.style.display = 'block'; // O 'flex', si usas flexbox para los slides
+            } else {
+                slide.style.display = 'none'; // La ocultamos si no está en el rango
+            }
+        });
+    }
+
+    // Añadimos "escuchadores" de eventos a los sliders.
+    // Cada vez que el usuario mueva un manejador, se llamará a la función filterOffers.
+    minSlider.addEventListener('input', filterOffers);
+    maxSlider.addEventListener('input', filterOffers);
+
+    // Llamamos a la función una vez al cargar la página para establecer el estado inicial
+    filterOffers();
+});

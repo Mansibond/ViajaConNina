@@ -36,7 +36,7 @@ html, body {
 
 body {
   margin: 0;
-  padding: 1vw 10vw;
+  padding: 1vw 20vw;
   font-family: 'Segoe UI', sans-serif;
   background-color: var(--color-accent);
   color: var(--text-color);
@@ -71,32 +71,32 @@ div{
   opacity: 0;
   animation: revelarLogo 1.5s ease-out forwards;
   position: relative;
-  width: 10vw;
+  width: 7vw;
   height: auto;
 }
 
 .disney-container {
   display: flex;
+  justify-content:center;
   align-items: center;
-  gap: 1rem; /* Espacio entre logo y texto */
+  gap: 2rem; /* Espacio entre logo y texto */
 }
 
-.logo-container::after {
+.logo-svg::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
   pointer-events: none;
   background-image: radial-gradient(circle, #fff 0%, transparent 70%),
-                    radial-gradient(circle, #ff0 0%, transparent 70%),
-                    radial-gradient(circle, #0ff 0%, transparent 70%);
-  background-size: 5px 5px;
-  background-repeat: repeat;
-  animation: chispitas 1.5s ease-out forwards;
-  opacity: 0.6;
-  z-index: 2;
+                    radial-gradient(circle, #fff 0%, transparent 70%),
+                    radial-gradient(circle, #fff 0%, transparent 70%);
+  background-size: 15px 15px;
+  background-position: 10% 20%, 50% 50%, 80% 30%;
+  background-repeat: no-repeat;
+  animation: destellos 1.5s infinite ease-in-out;
 }
 
 
@@ -151,19 +151,9 @@ div{
 }
 
 /*Efecto chispitas*/
-@keyframes chispitas {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
+@keyframes destellos {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
 }
 /* ===================== SLIDER DE FONDO ===================== */
 .background-slider {
@@ -480,6 +470,94 @@ div{
   background-color: #e0484d;
 }
 
+/* --- ESTILOS CORREGIDOS PARA EL PRICE RANGE SLIDER --- */
+
+/* Contenedor principal del filtro */
+.price-filter-container {
+    width: 80%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.price-filter-container h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Contenedor para mostrar los precios seleccionados */
+.price-display-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Contenedor para los dos inputs range */
+.slider-control-container {
+    position: relative;
+    height: 30px; /* Damos un poco más de altura para que quepan bien los manejadores */
+}
+
+.slider-control-container input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent; /* CORRECCIÓN CLAVE: El fondo de la barra es transparente */
+    pointer-events: none; /* La barra no intercepta el ratón */
+}
+
+/* Solo el slider de MAX (el que está al fondo) tendrá una barra gris visible */
+#max-price-slider {
+    background: #e0e0e0;
+    height: 8px;
+    border-radius: 4px;
+}
+
+/* Estilo del "pulgar" o manejador (thumb) para Chrome, Safari, etc. */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #007BFF;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    pointer-events: all; /* CORRECCIÓN CLAVE: El manejador SÍ es interactivo */
+    position: relative;
+    z-index: 1; /* Nos aseguramos que esté por encima de todo */
+}
+
+/* Estilo del "pulgar" o manejador (thumb) para Firefox */
+input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: #007BFF;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    pointer-events: all; /* CORRECCIÓN CLAVE: El manejador SÍ es interactivo */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- FIN DE ESTILOS DEL SLIDER --- */
+
+
 
 /* ===================== FOOTER ===================== */
 .footer {
@@ -494,7 +572,7 @@ div{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6px 12px;
+  padding: 0px 0px;
   font-size: 1rem;
   z-index: 999;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -539,85 +617,62 @@ div{
   filter: drop-shadow(0 0 5px #ffffff);
 }
 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 768px) {
+
+/* ======================================================= */
+/* ===================== RESPONSIVE DESIGN ===================== */
+/* ======================================================= */
+
+/* Para tabletas y dispositivos más pequeños (hasta 992px) */
+@media (max-width: 992px) {
   body {
-    padding: 15vw;
-    font-size: 0.9rem;
+    padding: 2vw 10vw; /* Reducimos el padding lateral */
   }
 
-  /* Botón del logo */
-  .menu-button {
-    width: 48px;
-    height: 48px;
-    top: 10px;
-    left: 10px;
+  .caja-inicio {
+    flex-direction: column; /* Apila las cajas verticalmente */
+    gap: 20px;
+  }
+  
+  .logo-svg {
+    width: 12vw; /* Hacemos el logo un poco más grande en proporción */
   }
 
-  /* Menú lateral */
-  .menu-blur {
-    width: 80vw; /* o usa 100% si quieres que ocupe toda la pantalla */
-    max-width: 300px;
-    left: -100vw;
-    padding: 50px 10px;
-    border-radius: 0 10px 10px 0;
-  }
-
-  .menu-blur.active {
-    left: 0;
-  }
-
-  .menu-blur li {
-    font-size: 0.9rem;
-    padding: 0.5em;
-  }
-
-  .menu-blur a {
-    height: 35px;
-  }
-
-  .menu-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .menu-text {
-    font-size: 0.85rem;
-  }
-
-  /* Fondo slider */
-  .background-slider {
-    height: 100vh;
-  }
-
-  .bg-slide {
-    background-position: center;
-    background-size: cover;
-  }
-
-  /*FOOTER*/
-  .footer {
-    font-size: 0.75rem;
-    padding: 8px;
-  }
-
-  .footer-social {
-    gap: 16px; /* Reduce el espacio entre enlaces para que quepan mejor */
-  }
-
-  .social-link {
-    font-size: 0.75rem;
-    gap: 6px;
-  }
-
-  .social-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .footer p {
-    font-size: 0.75rem;
+  .disney-container h1 {
+    font-size: 1.5rem; /* Ajustamos tamaño de la fuente */
   }
 }
 
 
+/* Para móviles (hasta 768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 4vw 5vw; /* Reducimos aún más el padding */
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .glass-box {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+  
+  .disney-container {
+      flex-direction: column; /* Apila el logo y el texto en móvil */
+      gap: 0.5rem;
+  }
+  
+  .logo-svg {
+    width: 80px; /* Tamaño fijo para el logo en móviles */
+  }
+  
+  .footer-social {
+      flex-direction: column; /* Apila los links sociales */
+      gap: 15px;
+  }
+  
+  .social-link span {
+      font-size: 0.9rem; /* Texto de redes sociales más pequeño */
+  }
+}

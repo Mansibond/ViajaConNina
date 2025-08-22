@@ -48,34 +48,55 @@
         </nav>
 
     </header>
-    <h1>AQUI TENEMOS LAS OFERTAS</h1>
-    <h1 class="disney">ESPECIALISTAS EN DISNEY</h1>
+   
+    <div class="glass-box">
+            <h1>Explora nuestras mejores rutas y promociones</h1>
+        <div class="disney-container">
+            <img src="img/index/icons/castilloDisneyAzul.png" alt="Logo" class="logo-svg">
+
+            <h1 class="disney">ESPECIALISTAS EN DISNEY</h1>
+        </div>
+    </div>
+    
+
+    <div class="price-filter-container">
+        <h2>Filtrar por Precio</h2>
+        <div class="price-display-container">
+            <span>Desde: <span id="min-price-display">0</span>€</span>
+            <span>Hasta: <span id="max-price-display">2000</span>€</span>
+        </div>
+        <div class="slider-control-container">
+            <input type="range" id="min-price-slider" min="0" max="2000" value="0">
+            <input type="range" id="max-price-slider" min="0" max="2000" value="2000">
+        </div>
+    </div>
 
     <p>¡Disfruta de nuestras ofertas de Navidad, no esperes que vuelan ✈️!</p>
+
     <div class="slider-wrapper">
         <button class="nav-button left">&#8592;</button>
         <div class="ofertas-slider">
             <div class="slider-container">
                 <!-- tus slides aquí -->
-                <div class="slide">
+                <div class="slide" data-price="450">
                     <img src="img/ofertas/alsacia-navidad.jpeg" alt="Oferta 1" />
-                    <div class="caption">Alsacia en Navidad</div>
+                    <div class="caption">Alsacia en Navidad - 450€</div>
                 </div>
-                <div class="slide">
+                <div class="slide" data-price="950">
                     <img src="img/ofertas/crucero-navidad.jpeg" alt="Oferta 2" />
-                    <div class="caption">Crucero Canarias y Marruecos</div>
+                    <div class="caption">Crucero Canarias y Marruecos - 950€</div>
                 </div>
-                <div class="slide">
+                <div class="slide" data-price="1200">
                     <img src="img/ofertas/egipto-navidad.jpeg" alt="Oferta 2" />
-                    <div class="caption">Egipto en Navidad</div>
+                    <div class="caption">Egipto en Navidad - 1200€</div>
                 </div>
-                <div class="slide">
+                <div class="slide" data-price="600">
                     <img src="img/ofertas/flandes-navidad.jpeg" alt="Oferta 2" />
-                    <div class="caption">Flandes en Navidad</div>
+                    <div class="caption">Flandes en Navidad - 600€</div>
                 </div>
-                <div class="slide">
+                <div class="slide" data-price="750">
                     <img src="img/ofertas/marroc-navidad.jpeg" alt="Oferta 2" />
-                    <div class="caption">Marruecos en Navidad</div>
+                    <div class="caption">Marruecos en Navidad - 750€</div>
                 </div>
                 <!-- Más slides -->
             </div>
@@ -97,11 +118,11 @@
             <img src="img/log/insta.png" alt="Instagram" class="social-icon">
             <span>@viaja_con_nina</span>
             </a>
-            <a href="https://www.instagram.com/viaja_con_nina/" target="_blank" class="social-link">
+            <a href="https://wa.me/34686833451" target="_blank" class="social-link">
             <img src="img/log/whass.png" alt="Whatsapp" class="social-icon">
             <span>+34 686 83 34 51</span>
             </a>
-            <a href="https://www.instagram.com/viaja_con_nina/" target="_blank" class="social-link">
+            <a href="mailto:info@viajaconnina.com" target="_blank" class="social-link">
             <img src="img/log/email.png" alt="E-mail" class="social-icon">
             <span>info@viajaconnina.com</span>
             </a>

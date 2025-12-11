@@ -42,6 +42,7 @@ body {
   color: var(--text-color);
   overflow-x: hidden;
   box-sizing: border-box;
+  padding-bottom: 150px; /* Ajusta este número según la altura real de tu footer */
 }
 
 .disney{
